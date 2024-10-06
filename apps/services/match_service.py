@@ -65,8 +65,18 @@ def _process_scheduled_matches(matches, category_type_list, match_formats_list):
                 "format_str": match_format,
                 "live": match.get("live", False),  
                 "result": match["result"],
-                "teama": match["teama"],
-                "teamb": match["teamb"]
+                "teama": {
+                    "team_id": match["teama"].get("team_id"),
+                    "name": match["teama"].get("name"),
+                    "short_name": match["teama"].get("short_name"),
+                    "logo_url": match["teama"].get("logo_url")
+                },
+                "teamb": {
+                    "team_id": match["teamb"].get("team_id"),
+                    "name": match["teamb"].get("name"),
+                    "short_name": match["teamb"].get("short_name"),
+                    "logo_url": match["teamb"].get("logo_url")
+                }
             }
 
             if match_format == "ODI":
