@@ -14,11 +14,11 @@ from config import Config
 import jwt
 import datetime
 
-def generate_jwt(user_id, phone_number):
+def generate_jwt(user_id, mobile_number):
     payload = {
         'user_id': user_id,
-        'phone_number': phone_number,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=2)  # Set expiration
+        'mobile_number': mobile_number,
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=7)  # Set expiration
     }
     token = jwt.encode(payload, Config.SECRET_KEY, algorithm='HS256')
     return token
@@ -67,7 +67,6 @@ def check_token():
         # Log the specific error for debugging
         logging.error(f"Invalid token error: {str(e)}")
         return {"status": "error", "message": "Invalid token"}, 401
-
 
 
 
